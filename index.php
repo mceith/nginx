@@ -9,5 +9,5 @@
    $host_ip = $_SERVER['REMOTE_ADDR'];
    $count = $redis->get($_SERVER['REMOTE_ADDR']);
    $self = $_SERVER['SERVER_ADDR'];
-   print "Hey $host_ip, this is your $count visit on container $self!!";
+   print "Hey you $host_ip, this is your $count visit on container $self!!";
 ?>
