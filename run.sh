@@ -23,9 +23,8 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			access_log /var/wwwlogs/access_www.example.com;
 			error_log /var/wwwlogs/error_www.example.com;
 			root /var/www/example.com/public_html;
+      set_real_ip_from  10.1.0.1;
 			real_ip_header    X-Forwarded-For;
-		  proxy_set_header        X-Real-IP       $remote_addr;
-			proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
 
 			location / {
 			index index.html index.htm index.php;
@@ -33,7 +32,6 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			
 			location ~ \.php$ {
 				include /etc/nginx/fastcgi_params;
-				fastcgi_param REMOTE_ADDR $http_x_forwarded_for;
 				fastcgi_pass  unix:/var/run/php-fpm/php-fpm.sock; 
 				fastcgi_index index.php;
 				fastcgi_param SCRIPT_FILENAME /var/www/example.com/public_html$fastcgi_script_name;
