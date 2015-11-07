@@ -23,6 +23,7 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			access_log /var/wwwlogs/access_www.example.com;
 			error_log /var/wwwlogs/error_www.example.com;
 			root /var/www/example.com/public_html;
+			real_ip_header    X-Forwarded-For;
 			
 			location / {
 			index index.html index.htm index.php;
