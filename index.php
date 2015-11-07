@@ -6,7 +6,9 @@
    $redis->setnx($_SERVER['REMOTE_ADDR'], 1);
    // Get the stored data and print it
    $redis->incr($_SERVER['REMOTE_ADDR']);
-   $host_ip = $_SERVER['REMOTE_ADDR'];
+	 $host_ip = $_SERVER['REMOTE_ADDR'];
+	 $redis = new Redis();
+	 $redis->connect('redis-slave', 6379);
    $count = $redis->get($_SERVER['REMOTE_ADDR']);
    $self = $_SERVER['SERVER_ADDR'];
    print "Hey  $host_ip, this is your $count visit on container $self!!";
