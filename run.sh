@@ -33,6 +33,7 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			
 			location ~ \.php$ {
 				include /etc/nginx/fastcgi_params;
+				fastcgi_param REMOTE_ADDR $http_x_real_ip;
 				fastcgi_pass  unix:/var/run/php-fpm/php-fpm.sock; 
 				fastcgi_index index.php;
 				fastcgi_param SCRIPT_FILENAME /var/www/example.com/public_html$fastcgi_script_name;
