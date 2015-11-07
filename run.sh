@@ -25,6 +25,7 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			root /var/www/example.com/public_html;
       set_real_ip_from  10.1.0.1;
 			real_ip_header    X-Forwarded-For;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
 			location / {
 			index index.html index.htm index.php;
