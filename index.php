@@ -12,5 +12,6 @@
    $count = $redis->get($_SERVER['REMOTE_ADDR']);
    $self = $_SERVER['SERVER_ADDR'];
 	 print "Hey  $host_ip, this is your $count visit on container $self!!";
+	 echo 'Client IP: '.$_SERVER["HTTP_X_FORWARDED_FOR"];
    phpinfo();
 ?>
