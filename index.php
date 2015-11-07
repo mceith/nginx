@@ -1,5 +1,6 @@
 <?php
    //Connecting to Redis server on localhost
+   /*
    $redis = new Redis();
    $redis->connect('DBADDR', 6379);
    //set the data in redis string
@@ -11,5 +12,7 @@
 	 $redis->connect('redis-slave', 6379);
    $count = $redis->get($_SERVER['REMOTE_ADDR']);
    $self = $_SERVER['SERVER_ADDR'];
-   print "Hey  $host_ip, this is your $count visit on container $self!!";
+	 print "Hey  $host_ip, this is your $count visit on container $self!!";
+		*/
+   phpinfo();
 ?>
