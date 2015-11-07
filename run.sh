@@ -24,7 +24,9 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 			error_log /var/wwwlogs/error_www.example.com;
 			root /var/www/example.com/public_html;
 			real_ip_header    X-Forwarded-For;
-			
+		  proxy_set_header        X-Real-IP       $remote_addr;
+			proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+
 			location / {
 			index index.html index.htm index.php;
 			}
