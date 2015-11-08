@@ -11,7 +11,7 @@ configure_nginx() {
         sed -ie "s/;listen.owner = nobody/listen.owner = nobody/" $PHPFPM_CONF_FILE
         sed -ie "s/;listen.group = nobody/listen.group = nobody/" $PHPFPM_CONF_FILE
         sed -ie "s/apache/${PHP_USER}/" $PHPFPM_CONF_FILE
-        sed -ie "s/DBADDR/${OC_PORT_6379_TCP_ADDR}/" $INDEX
+        sed -ie "s/DBADDR/oc/" $INDEX
 
 }
 if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
