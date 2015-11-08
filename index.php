@@ -1,6 +1,6 @@
 <?php
    $redis = new Redis();
-   $redis->connect('172.30.140.203', 6379);
+   $redis->connect('DBADDR', 6379);
    $redis->setnx($_SERVER['REMOTE_ADDR'], 1);
    $redis->incr($_SERVER['REMOTE_ADDR']);
          $host_ip = $_SERVER['REMOTE_ADDR'];
