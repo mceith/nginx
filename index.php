@@ -10,7 +10,6 @@
    $self = $_SERVER['SERVER_ADDR'];
    //phpinfo();
    $server_info = $redis->info();
-   print "time is $cpu";
    $array = array_values($server_info);
    $redis_server = $array[10];
    print "Hey  $host_ip, this is your $count visit on container $self and redis-slave $redis_server";
