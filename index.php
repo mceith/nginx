@@ -12,5 +12,5 @@
    $server_info = $redis->info();
    $array = array_values($server_info);
    $redis_server = $array[10];
-   print "Hey you! $host_ip, this is your $count visit on container $self and redis-slave $redis_server";
+   print "Hey You! $host_ip, this is your $count visit on container $self and redis-slave $redis_server";
 ?>
