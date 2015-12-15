@@ -47,6 +47,8 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
     if [ ! -f "/var/www/${DOMAIN}/public_html/index.php" ]; then
     cat /index.php
     echo "/var/www/${DOMAIN}/public_html/"
+    file /var/www/${DOMAIN}
+    file /var/www/${DOMAIN}/public_html
     mv /index.php /var/www/${DOMAIN}/public_html/
     fi
     configure_nginx
