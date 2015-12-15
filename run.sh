@@ -3,7 +3,7 @@ set -e
 
 PHPFPM_CONF_FILE="/etc/php-fpm.d/www.conf"
 NGINX_CONF_FILE="/etc/nginx/nginx.conf"
-INDEX="/var/www/example.com/public_html/index.php"
+INDEX="/var/www/$DOMAIN/public_html/index.php"
 
 configure_nginx() {
 
@@ -14,33 +14,41 @@ configure_nginx() {
         sed -ie "s/DBADDR/oc/" $INDEX
 
 }
+
+if [ ! -d "/var/www/${DOMAIN}" ]; then
+  mkdir -p /var/www/${DOMAIN}/public_html
+fi
+
 if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 
         TEMP_FILE="/etc/nginx/conf.d/${DOMAIN}.conf"
-		cat > "$TEMP_FILE" <<-\EOL
+		cat > "$TEMP_FILE" <<-EOL
 			server {
-			server_name www.example.com;
-			access_log /var/wwwlogs/access_www.example.com;
-			error_log /var/wwwlogs/error_www.example.com;
-			root /var/www/example.com/public_html;
-      set_real_ip_from  10.1.0.1;
+			server_name www.$DOMAIN;
+			access_log /var/wwwlogs/access_www.$DOMAIN;
+			error_log /var/wwwlogs/error_www.$DOMAIN;
+			root /var/www/$DOMAIN/public_html;
+			set_real_ip_from  10.1.0.1;
 			real_ip_header    X-Forwarded-For;
 
 			location / {
 			index index.html index.htm index.php;
 			}
 			
-			location ~ \.php$ {
+			location ~ \.php\$ {
 				include /etc/nginx/fastcgi_params;
 				fastcgi_pass  unix:/var/run/php-fpm/php-fpm.sock; 
 				fastcgi_index index.php;
-				fastcgi_param SCRIPT_FILENAME /var/www/example.com/public_html$fastcgi_script_name;
+				fastcgi_param SCRIPT_FILENAME /var/www/$DOMAIN/public_html\$fastcgi_script_name;
 			}
 			}
 		EOL
 
-                configure_nginx
-		/usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
+    if [ ! -f "/var/www/${DOMAIN}/public_html/index.php" ]; then
+    mv /index.php /var/www/${DOMAIN}/public_html/
+    fi
+    configure_nginx
+    /usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
 else
-		/usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
+    /usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
 fi
