@@ -15,7 +15,7 @@ configure_nginx() {
 
 }
 
-if [ ! -d "/var/www/${DOMAIN}" ]; then
+if [ ! -d "/var/www/${DOMAIN}/public_html" ]; then
   mkdir -p /var/www/${DOMAIN}/public_html
 fi
 
@@ -45,11 +45,7 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 		EOL
 
     if [ ! -f "/var/www/${DOMAIN}/public_html/index.php" ]; then
-    cat /index.php
-    echo "/var/www/${DOMAIN}/public_html/"
-    file /var/www/${DOMAIN}
-    file /var/www/${DOMAIN}/public_html
-    mv /index.php /var/www/${DOMAIN}/public_html/
+      mv /index.php /var/www/${DOMAIN}/public_html/
     fi
     configure_nginx
     /usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
