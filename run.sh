@@ -45,7 +45,7 @@ if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 		EOL
 
     if [ ! -f "/var/www/${DOMAIN}/public_html/index.php" ]; then
-    mv /index.php /var/www/${DOMAIN}/public_html/
+    mv /index.php /var/www/${DOMAIN}/public_html/index.php
     fi
     configure_nginx
     /usr/sbin/php-fpm -D && exec /usr/sbin/nginx -g "daemon off;"
