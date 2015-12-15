@@ -19,6 +19,10 @@ if [ ! -d "/var/www/$DOMAIN" ]; then
   mkdir -p /var/www/$DOMAIN && mkdir -p /var/www/$DOMAIN/public_html
 fi
 
+if [ ! -d "/var/www/$DOMAIN/public_html" ]; then
+  mkdir -p "/var/www/$DOMAIN/public_html"
+fi
+
 if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
 
         TEMP_FILE="/etc/nginx/conf.d/${DOMAIN}.conf"
