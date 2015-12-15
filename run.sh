@@ -15,8 +15,8 @@ configure_nginx() {
 
 }
 
-if [ ! -d "/var/www/${DOMAIN}" ]; then
-  mkdir -p /var/www/${DOMAIN}/public_html
+if [ ! -d "/var/www/$DOMAIN" ]; then
+  mkdir -p /var/www/$DOMAIN/public_html
 fi
 
 if [ ! -f "/etc/nginx/conf.d/${DOMAIN}.conf" ]; then
