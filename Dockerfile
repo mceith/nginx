@@ -10,6 +10,7 @@ RUN yum install -y nginx \
 ADD run.sh /run.sh
 
 ENV PHP_USER nginx
+ENV DOMAIN example.com
 ENV OC_PORT_6379_TCP_ADDR 127.0.0.1
 
 COPY index.php /index.php
