@@ -1,4 +1,4 @@
-FROM centos:centos7
+FROM centos:latest
 MAINTAINER Jura Berg <contact@mceith.com>
 RUN yum install -y http://dev.centos.org/centos/7/systemd-container/systemd-container-EOL-208.21-1.el7.noarch.rpm && yum update -y && yum install -y epel-release
 RUN yum install -y nginx \
