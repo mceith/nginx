@@ -15,7 +15,7 @@
      $the_ip = filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 );
    }
    return $the_ip;
-   
+   } 
    $redis = new Redis();
    $redis->connect('DBADDR', 6379);
    $redis->setnx(get_ip(), 1);
@@ -28,5 +28,5 @@
    $server_info = $redis->info();
    $array = array_values($server_info);
    $redis_server = $array[10];
-   print "Hey $host_ip, this is your $count visit on container $self and redis-slave $redis_server";
+   print "Hey Nitret!! $host_ip, this is your $count visit on container $self and redis-slave $redis_server";
 ?>
