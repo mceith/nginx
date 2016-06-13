@@ -16,6 +16,7 @@
    }
    return $the_ip;
    } 
+   print get_ip();
    $redis = new Redis();
    $redis->connect('DBADDR', 6379);
    $redis->setnx(get_ip(), 1);
